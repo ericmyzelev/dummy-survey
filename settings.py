@@ -31,7 +31,7 @@ USE_POINTS = True
 
 ROOMS = [
     dict(
-        name='Survey Room',
+        name='survey_room',
         display_name='Risk-Taking Survey'
     ),
     dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
