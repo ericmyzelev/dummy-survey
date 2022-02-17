@@ -180,6 +180,10 @@ class Page2(Page):
             return 'Your investments must add up to 100%.'
 
 class Results(Page):
-    pass
+    @staticmethod
+    def js_vars(player):
+        return dict(
+            income_percentage = player.income_percentage,
+        )
 
 page_sequence = [MyPage, Page2, Results]
