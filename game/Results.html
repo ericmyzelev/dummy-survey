@@ -104,6 +104,35 @@ var chartSpeed = Highcharts.chart('chart', Highcharts.merge(gaugeOptions, {
 });
 </script>
 
-<div id="chart" style="width:100%; height:400px;"></div>
+<script>
+        var x = 50;
+        document.addEventListener('DOMContentLoaded', function () {
+        const chart = Highcharts.chart('chart2', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Fruit Consumption'
+            },
+            xAxis: {
+                categories: ['Apples']
+            },
+            yAxis: {
+                title: {
+                    text: 'Fruit eaten'
+                }
+            },
+            series: [{
+                name: 'Jane',
+                data: [x]
+            }, {
+                name: 'John',
+                data: [100]
+            }]
+        });
+    });
+</script>
+
+<div id="chart2" style="width:100%; height:400px;"></div>
 
 {{ endblock }}
