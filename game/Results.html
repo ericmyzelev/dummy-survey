@@ -115,21 +115,21 @@ var chartSpeed = Highcharts.chart('chart', Highcharts.merge(gaugeOptions, {
                 type: 'bar'
             },
             title: {
-                text: 'Fruit Consumption'
+                text: 'Percentage Invested'
             },
             xAxis: {
                 categories: ['Apples']
             },
             yAxis: {
                 title: {
-                    text: 'Fruit eaten'
+                    text: 'Amount in $'
                 }
             },
             series: [{
-                name: 'Jane',
+                name: 'Invested',
                 data: [x]
             }, {
-                name: 'John',
+                name: 'Income',
                 data: [100]
             }]
         });
