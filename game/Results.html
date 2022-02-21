@@ -1,142 +1,34 @@
-{{ block title }}
+
+
+
+    {{ block title }}
     Results
-{{ endblock }}
-{{ block content }}
+    {{ endblock }}
+    {{ block content }}
 
 
-
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/highcharts-more.js"></script>
-<script src="http://code.highcharts.com/modules/solid-gauge.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 <p>Thank you for completing this survey.</p>
 
+<div id="chart"></div>
+    
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-var gaugeOptions = {
-    chart: {
-        type: 'solidgauge'
-    },
-
-    title: 'Percentage of Income Invested',
-
-    pane: {
-        center: ['50%', '85%'],
-        size: '140%',
-        startAngle: -90,
-        endAngle: 90,
-        background: {
-            backgroundColor:
-                Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
-            innerRadius: '60%',
-            outerRadius: '100%',
-            shape: 'arc'
-        }
-    },
-
-    exporting: {
-        enabled: false
-    },
-
-    tooltip: {
-        enabled: false
-    },
-
-    // the value axis
-    yAxis: {
-        stops: [
-            [0.1, '#55BF3B'], // green
-            [0.5, '#DDDF0D'], // yellow
-            [0.9, '#DF5353'] // red
-        ],
-        lineWidth: 0,
-        tickWidth: 0,
-        minorTickInterval: null,
-        tickAmount: 2,
-        title: {
-            y: -150
-        },
-        labels: {
-            y: 16
-        }
-    },
-
-    plotOptions: {
-        solidgauge: {
-            dataLabels: {
-                y: 5,
-                borderWidth: 0,
-                useHTML: true
-            }
+    var data = [
+    {
+        domain: { x: [0, 1], y: [0, 1] },
+        value: js_vars.income_percentage,
+        title: { text: "Percent Invested" },
+        type: "indicator",
+        mode: "gauge+number",
+        gauge: {
+            axis: { range: [null, 100] },
         }
     }
-};
+    ];
 
-// The speed gauge
-const chartSpeed = Highcharts.chart('chart', Highcharts.merge(gaugeOptions, {
-    yAxis: {
-        min: 0,
-        max: 100,
-        title: {
-            text: 'Percentage Income Invested'
-        }
-    },
-
-    credits: {
-        enabled: false
-    },
-
-    series: [{
-        name: 'Speed',
-        data: [js_vars.income_percentage],
-        dataLabels: {
-            format:
-                '<div style="text-align:center">' +
-                '<span style="font-size:25px">{y} %</span><br/>' +
-                '</div>'
-        },
-        tooltip: {
-            valueSuffix: '%'
-        }
-    }]
-
-}));
-});
+    var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+    Plotly.newPlot('chart', data, layout);
 </script>
-
-    <script>
-        var x = js_vars.income_percentage;
-        document.addEventListener('DOMContentLoaded', function () {
-        const chart = Highcharts.chart('chart2', {
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: 'Percentage Invested'
-            },
-            xAxis: {
-                categories: ['Apples']
-            },
-            yAxis: {
-                title: {
-                    text: 'Amount in $'
-                }
-            },
-            series: [{
-                name: 'Invested',
-                data: [x]
-            }, {
-                name: 'Income',
-                data: [100]
-            }]
-        });
-    });
-    </script>
-
-<div id="chart" style="width:100%; height:400px;"></div>
-<div id="chart2" style="width:100%; height:400px;"></div>
 
 {{ endblock }}
